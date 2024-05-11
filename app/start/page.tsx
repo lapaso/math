@@ -9,11 +9,7 @@ import { HistoryRepository } from '../lib/historyRepository';
 
 export default function Home() {
   const router = useRouter();
-  const currentUser = UserRepository.get();
-  if (!currentUser) {
-    router.push('/account');
-    return;
-  }
+  const currentUser = UserRepository.getOrDefault();
 
   const [currentQuestion, setCurrentQuestion] = useState(
     HistoryRepository.createQuestion(currentUser)
@@ -21,6 +17,14 @@ export default function Home() {
   const [currentNumber, setCurrentNumber] = useState(
     HistoryRepository.getCurrentGameQuestion()
   );
+
+  // todo add logisc for redirect to Acount page
+  // if (!currentUser) {
+  //   router.push('/account');
+  //   return;
+  // }
+
+  setCurrentQuestion(HistoryRepository.createQuestion(currentUser));
 
   const onQuestionSubmit = (result: string | null) => {
     if (result === null) {
