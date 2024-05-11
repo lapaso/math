@@ -1,14 +1,12 @@
 'use client';
 
 import MainContent from '@/app/components/main-content';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { UserRepository } from '../lib/userRepository';
 import QuestionComponent from './components/question';
 import { HistoryRepository } from '../lib/historyRepository';
 
 export default function Home() {
-  const router = useRouter();
   const currentUser = UserRepository.getOrDefault();
 
   const [currentQuestion, setCurrentQuestion] = useState(
@@ -24,7 +22,9 @@ export default function Home() {
   //   return;
   // }
 
-  setCurrentQuestion(HistoryRepository.createQuestion(currentUser));
+  useEffect(() => {
+    setCurrentQuestion(HistoryRepository.createQuestion(currentUser));
+  }, []);
 
   const onQuestionSubmit = (result: string | null) => {
     if (result === null) {

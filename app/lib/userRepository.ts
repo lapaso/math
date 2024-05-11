@@ -6,21 +6,25 @@ export class UserRepository {
   static currentUser: User;
 
   static loadFromStorage(): User | null {
-    const data = localStorage.getItem('currentUser');
-    if (data) {
-      const parsedData = JSON.parse(data);
-      const user = new User();
+    try {
+      const data = localStorage.getItem('currentUser');
+      if (data) {
+        const parsedData = JSON.parse(data);
+        const user = new User();
 
-      user.firstName = parsedData.firstName;
-      user.lastName = parsedData.lastName;
-      user.operations = parsedData.operations;
-      user.countOfQuestions = parsedData.countOfQuestions;
-      user.maxNumber = parsedData.maxNumber;
-      user.withoutNagativeResult = parsedData.withoutNagativeResult;
+        user.firstName = parsedData.firstName;
+        user.lastName = parsedData.lastName;
+        user.operations = parsedData.operations;
+        user.countOfQuestions = parsedData.countOfQuestions;
+        user.maxNumber = parsedData.maxNumber;
+        user.withoutNagativeResult = parsedData.withoutNagativeResult;
 
-      UserRepository.currentUser = user;
+        UserRepository.currentUser = user;
 
-      return user;
+        return user;
+      }
+    } catch (e) {
+      return null;
     }
     return null;
   }
