@@ -1,3 +1,4 @@
+'use client';
 import { Game, Question } from './history';
 import { getOperationResult } from './listOfOperators';
 import { User, UserInterface } from './user';

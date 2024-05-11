@@ -1,3 +1,5 @@
+'use client';
+
 import { User, UserInterface } from './user';
 
 export class UserRepository {
