@@ -2,12 +2,9 @@
 
 import MainContent from '@/app/components/main-content';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 import { useState } from 'react';
 import { UserRepository } from '../lib/userRepository';
 import QuestionComponent from './components/question';
-import { Question } from '../lib/history';
-import { getOperationResult } from '../lib/listOfOperators';
 import { HistoryRepository } from '../lib/historyRepository';
 
 export default function Home() {
